@@ -1,0 +1,27 @@
+package com.study.provide;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @Description
+ * @Auther zhangyw
+ * @Date 2020/9/10 11:39
+ **/
+@RestController
+@EnableDiscoveryClient
+@SpringBootApplication
+public class NacosProvideApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(NacosProvideApplication.class, args);
+    }
+
+    @GetMapping("/helloNacos")
+    public String helloNacos(){
+        return "你好，nacos！";
+    }
+}
