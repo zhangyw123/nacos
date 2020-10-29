@@ -1,0 +1,35 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: "@artifactId@"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: consumer-router
+          uri: lb://nacos-consumer
+          predicates:
+            - Path=/consumer/**
+        - id: provider-router
+          uri: lb://nacos-provide
+          predicates:
+            - Path=/provide/**
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: dev
+        username: nacos-dev
+        password: nacos-dev
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        prefix: application-gateway
+        file-extension: yml
+        shared-dataids: application-gateway.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: "@profiles.active@"
+
+nacos.gateway.route.config.data-id: gateway-router
+nacos.gateway.route.config.group: DEFAULT_GROUP

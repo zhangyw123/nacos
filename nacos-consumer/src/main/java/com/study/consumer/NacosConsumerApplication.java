@@ -1,13 +1,13 @@
 package com.study.consumer;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -18,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
+@Slf4j
+@RequestMapping("/consumer")
 public class NacosConsumerApplication {
 
     public static void main(String[] args) {
@@ -33,8 +35,9 @@ public class NacosConsumerApplication {
         return new RestTemplate();
     }
 
-    @GetMapping("/consumer")
-    public String test1() {
-        return restTemplate.getForObject("http://nacos-provide/helloNacos",String.class);
+    @GetMapping("/sayHello/{name}")
+    public String sayHello(@PathVariable("name") String name){
+        log.info("I'm calling nacos-consumer service by dynamic gateway...");
+        return name + " Hi~, I'm from nacos-consumer";
     }
 }
