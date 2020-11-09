@@ -1,10 +1,10 @@
 server:
-  port: 9528
+  port: 9526
   servlet:
-    context-path: /consumer
+    context-path: /feign
 spring:
   application:
-    name: nacos-consumer
+    name: nacos-feign
   cloud:
     nacos:
       discovery:
@@ -20,3 +20,7 @@ management:
   endpoint:
     health:
       show-details: always
+
+feign:
+  hystrix:
+    enabled: true

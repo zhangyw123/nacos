@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @Description
  * @Auther zhangyw
@@ -18,15 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
 @SpringBootApplication
 @Slf4j
-@RequestMapping("/provide")
 public class NacosProvideApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NacosProvideApplication.class, args);
     }
-    @GetMapping("/sayHello/{name}")
-    public String sayHello(@PathVariable("name") String name){
+    @GetMapping("/hello")
+    public String sayHello(){
         log.info("I'm calling nacos-provider service by dynamic gateway...");
-        return name + " Hi~, I'm from nacos-provider";
+        return  " Hi~, I'm from nacos-provider";
     }
 }

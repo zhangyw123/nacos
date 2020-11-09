@@ -19,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @RestController
 @Slf4j
-@RequestMapping("/consumer")
 public class NacosConsumerApplication {
 
     public static void main(String[] args) {
@@ -39,5 +38,10 @@ public class NacosConsumerApplication {
     public String sayHello(@PathVariable("name") String name){
         log.info("I'm calling nacos-consumer service by dynamic gateway...");
         return name + " Hi~, I'm from nacos-consumer";
+    }
+    @GetMapping("/hello")
+    public String hello(){
+        log.info("I'm calling nacos-consumer service by dynamic gateway...");
+        return  " Hi~, I'm from nacos-consumer";
     }
 }

@@ -1,5 +1,7 @@
 server:
   port: 9527
+  servlet:
+    context-path: /provide
 spring:
   application:
     name: nacos-provide
@@ -8,3 +10,13 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
         namespace: dev
+        service: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

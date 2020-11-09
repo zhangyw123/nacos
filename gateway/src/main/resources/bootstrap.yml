@@ -17,6 +17,10 @@ spring:
           uri: lb://nacos-provide
           predicates:
             - Path=/provide/**
+        - id: feign-router
+          uri: lb://nacos-feign
+          predicates:
+            - Path=/feign/**
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
